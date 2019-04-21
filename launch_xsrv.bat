@@ -1,9 +1,9 @@
 @echo off
 
-set xsrvexec=%1
-set dispnum=%2
-set windowmode=%3
+set dispnum=%1
+set windowmode=%2
+set PATH=%PATH%;%programfiles%\VcXsrv
 
-start "Xserver" /D "%programfiles%\VcXsrv" %xsrvexec% :%dispnum% -ac -terminate -lesspointer -%windowmode% -clipboard -wgl
+start "Xserver" vcxsrv :%dispnum% -ac -terminate -lesspointer -%windowmode% -clipboard -wgl
 
 exit
