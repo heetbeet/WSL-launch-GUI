@@ -1,46 +1,25 @@
 @echo off
 
-Setlocal enabledelayedexpansion
+REM Add unescapable quatations around args: \"blabla\"
+SETLOCAL EnableDelayedExpansion
+	set args=empty
+	set args=%args:empty=%
+	for %%x in (%*) do set "args=!args!\"%%~x\" "
+SETLOCAL DisableDelayedExpansion
 
-set args=empty
-set args=%args:empty=%
-
-for %%x in (%*) do set "args=!args!\"%%~x\" "
-
-REM echo Number of processed arguments: %args%
-
+REM Default parameters
 set windowmode=multiwindow
-
-set pause=false
-
 set dispnum=0
 set disp=localhost:%dispnum%.0
+set bash=%systemroot%\system32\bash.exe
 
-set bash="%systemroot%\system32\bash.exe"
-set cmdbin=%systemroot%\system32\cmd.exe
-call :tounixpath cmdbin
+REM Setup vcmsrv parameters; to escape \ make sure \ is wrapped as \\\\
+set path=%path%;%programfiles%\VcXsrv
+set vcxsrv_exc=start vcxsrv :%dispnum% -ac -terminate -lesspointer -%windowmode% -clipboard -wgl
+set vcxsrv_exc=%vcxsrv_exc:\=\\\\%
 
-set xsrv_run=%cd%\launch_xsrv.bat
-set xsrv_run=\"%xsrv_run:\=\\\\%\"
-set xsrv_run=%xsrv_run% %dispnum% %windowmode%
-
-REM ******************************************************
-REM The linux/windows back-and-forth x-server opening
-REM ******************************************************
-%bash% -c "export DISPLAY=%disp% && if ! xdpyinfo -display %disp% > /dev/null 2>&1; then \"%cmdbin%\" /C %xsrv_run%; fi; %args%"
-
-IF %pause%==true (
-  pause
-)
-
-goto :eof
-
-REM ******************************************************
-REM Convert a windows path to a unix path Expensive O(26N)
-REM ******************************************************
-:tounixpath
-    for %%c in (^^ a b c d e f g h i j k l m n o p q r s t u v w x y z) DO SET %1=!%1:%%c:=/mnt/%%c!
-	set %1=!%1:\=/!
-    goto :eof
-
-:eof
+REM from linux/bash 
+REM   1. setup display output,
+REM   2. call from within linux to the windows vcxsrv exe to open an instance, and
+REM   3. call the program in linux to open as a GUI
+%bash% -c "export DISPLAY=%disp% && if ! xdpyinfo -display %disp% > /dev/null 2>&1; then /mnt/c/Windows/System32/cmd.exe /C %vcxsrv_exc%; fi; %args%"
