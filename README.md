@@ -10,7 +10,7 @@ Requires VcXsrv installed. Install directory should either be in %programfiles% 
 
 ## Syntax
 
-`bashx app_to_lauch app_arg1 app_arg2 ... `
+`bashx app_to_lauch app_arg1 app_arg2 ... ` <br>
 `bashx-console app_to_lauch app_arg1 app_arg2 ... `
 
 ## Tip
