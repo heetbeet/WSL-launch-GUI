@@ -8,7 +8,7 @@ ScriptName = Wscript.ScriptName
 Path = Mid(ScriptFullPath, 1, Len(ScriptFullPath)-Len(ScriptName))
 
 'Generate the following command
-'"$Path\run_app.bat" "arg1" "arg2" "arg3" ...
+'"$Path\bashx-console.bat" "arg1" "arg2" "arg3" ...
 RunCmd = chr(34) & Path & "bashx-console.bat" & chr(34) 
 If WScript.Arguments.Count >= 1 Then
     For i = 0 To WScript.Arguments.Count-1
