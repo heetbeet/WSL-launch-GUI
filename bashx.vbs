@@ -1,5 +1,5 @@
 '*************************************************
-' Run the run_app.bat file silently
+' Run the bashx-console.bat file silently
 '*************************************************
 
 'adapted from http://superuser.com/questions/140047/how-to-run-a-batch-file-without-launching-a-command-window/390129
