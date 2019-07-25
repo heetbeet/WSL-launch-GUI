@@ -4,7 +4,7 @@ Scripts to launch GUI applications / window managers installed on a Linux distri
 
 Requires VcXsrv installed. Install directory should either be in %programfiles% (e.g. C:\Program Files\VcXsrv), or registered in the system path.
 
-For some reason the latest version of VcXsrv does not run on my system. If you have the same bug, rather use: https://sourceforge.net/projects/portable-x-server/postdownload
+For some reason the latest version of VcXsrv does not run on my system. If you have the same bug, rather use: https://sourceforge.net/projects/portable-x-server
 
 ## Features
 
