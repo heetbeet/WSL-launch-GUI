@@ -18,3 +18,6 @@ Note, for some reason the latest version of VcXsrv does not run on my system wit
 ## Tip
 
 For high-DPI displays tick "Override high DPI scaling behavior" and select "Application" in "Compatibility" tab of vcxsrv.exe properties.
+
+## Protip
+To make a shortcut to a GUI linux app in windows, say Sublime, make a shortcut to bashx on your desktop, set the (right-click Property's) target to Target: `C:\path_to_WSL-launch-GUI\bashx.vbs subl`, choose a Icon that looks like your linux app, and bam, you can double-click to seamlessly open.
