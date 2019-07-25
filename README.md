@@ -2,13 +2,13 @@
 
 Scripts to launch GUI applications / window managers installed on a Linux distribution.
 
-Requires VcXsrv installed. Install directory should either be in %programfiles% (e.g. C:\Program Files\VcXsrv), or registered in the system path.
+Requires either (a) VcXsrv installed in default Program Files location, (b) the VcXsrv portable directory in the same directory as bashx, or (c) or VcXsrv registered in the system path.
 
-For some reason the latest version of VcXsrv does not run on my system. If you have the same bug, rather use: https://sourceforge.net/projects/portable-x-server
+Note, for some reason the latest version of VcXsrv does not run on my system with error: `Failed to activate virtual core keyboard 2`. This version seems to work fine: https://sourceforge.net/projects/portable-x-server
 
 ## Features
 
-- checks if X server is running and automatically launches one
+`bashx` runs from windows, it opens Linux bash and sets the display output correctly, then reach-aroundly opens VcXsrv.exe from windows to run the requested Linux GUI program. It's awesome.
 
 ## Syntax
 
