@@ -14,12 +14,14 @@ set disp=localhost:%dispnum%.0
 set bash=%systemroot%\system32\bash.exe
 
 REM Setup vcmsrv parameters; to escape \ make sure \ is wrapped as \\\\
-set path=%path%;%programfiles%\VcXsrv
-set vcxsrv_exc=start vcxsrv :%dispnum% -ac -terminate -lesspointer -%windowmode% -clipboard -wgl
+set path=%path%;%~dp0\VcXsrv;%programfiles%\VcXsrv
+set vcxsrv_exc=start vcxsrv :%dispnum% -ac -terminate -lesspointer -%windowmode% -clipboard -wgl -silent-dup-error
 set vcxsrv_exc=%vcxsrv_exc:\=\\\\%
 
 REM from linux/bash 
 REM   1. setup display output,
 REM   2. call from within linux to the windows vcxsrv exe to open an instance, and
 REM   3. call the program in linux to open as a GUI
+
+echo  %bash% -c "export DISPLAY=%disp% && if ! xdpyinfo -display %disp% > /dev/null 2>&1; then /mnt/c/Windows/System32/cmd.exe /C %vcxsrv_exc%; fi; %args%"
 %bash% -c "export DISPLAY=%disp% && if ! xdpyinfo -display %disp% > /dev/null 2>&1; then /mnt/c/Windows/System32/cmd.exe /C %vcxsrv_exc%; fi; %args%"
